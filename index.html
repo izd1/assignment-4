@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Application Tracker</title>
+
+    <!-- DaisyUI + Tailwind -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body class="bg-slate-100 min-h-screen">
+    <section class="max-w-3xl mx-auto px-4 py-12 pb-20">
+      <h1 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-7">
+        Job Application Tracker
+      </h1>
+
+      <!-- Dashboard -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div
+          class="card bg-base-100 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <div class="card-body p-5">
+            <p class="text-sm font-medium text-slate-500">Total</p>
+            <p id="stat-total" class="text-4xl font-bold text-slate-800 mt-1">
+              0
+            </p>
+          </div>
+        </div>
+        <div
+          class="card bg-base-100 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <div class="card-body p-5">
+            <p class="text-sm font-medium text-slate-500">Interview</p>
+            <p
+              id="stat-interview"
+              class="text-4xl font-bold text-green-600 mt-1"
+            >
+              0
+            </p>
+          </div>
+        </div>
+        <div
+          class="card bg-base-100 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <div class="card-body p-5">
+            <p class="text-sm font-medium text-slate-500">Rejected</p>
+            <p id="stat-rejected" class="text-4xl font-bold text-red-600 mt-1">
+              0
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="divider my-0 mb-7"></div>
+    </section>
+  </body>
+</html>
