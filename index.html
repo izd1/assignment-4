@@ -15,7 +15,7 @@
   </head>
 
   <body class="bg-slate-100 min-h-screen">
-    <section class="max-w-3xl mx-auto px-4 py-12 pb-20">
+    <section class="max-w-3xl mx-auto px-4 pt-12">
       <h1 class="text-3xl sm:text-4xl font-bold text-slate-800 mb-7">
         Job Application Tracker
       </h1>
@@ -57,6 +57,36 @@
         </div>
       </div>
       <div class="divider my-0 mb-7"></div>
+    </section>
+    <section class="max-w-3xl mx-auto px-4 pb-20">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-bold text-slate-800">Available Jobs</h2>
+        <span id="jobs-count" class="text-sm font-medium text-slate-500"
+          >0 jobs</span
+        >
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 mb-5" id="tab-bar">
+        <button
+          class="btn btn-sm rounded-lg border border-slate-200 tab-active"
+          data-tab="all"
+        >
+          All
+        </button>
+        <button
+          class="btn btn-sm rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-gray-200"
+          data-tab="interview"
+        >
+          Interview
+        </button>
+        <button
+          class="btn btn-sm rounded-lg border border-slate-200 bg-white text-slate-500 hover:bg-gray-200"
+          data-tab="rejected"
+        >
+          Rejected
+        </button>
+      </div>
     </section>
   </body>
 </html>
