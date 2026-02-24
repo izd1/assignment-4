@@ -14,7 +14,7 @@ let jobs = [
     id: 2,
     company: "BrightPath Digital",
     position: "Frontend Engineer",
-    location: "Chicago, IL",
+    location: "Chicago",
     type: "Part-time",
     salary: "$85,000 - $115,000",
     description:
@@ -25,7 +25,7 @@ let jobs = [
     id: 3,
     company: "Insight Analytics",
     position: "Business Intelligence Developer",
-    location: "Denver, CO",
+    location: "Denver",
     type: "Full-time",
     salary: "$120,000 - $155,000",
     description:
@@ -36,7 +36,7 @@ let jobs = [
     id: 4,
     company: "SkyNet Systems",
     position: "Software Engineer (Backend)",
-    location: "Dallas, TX",
+    location: "Dallas",
     type: "Full-time",
     salary: "$135,000 - $175,000",
     description:
@@ -47,7 +47,7 @@ let jobs = [
     id: 5,
     company: "EcoWave Technologies",
     position: "Full Stack Engineer",
-    location: "Portland, OR",
+    location: "Portland",
     type: "Full-time",
     salary: "$115,000 - $150,000",
     description:
@@ -58,7 +58,7 @@ let jobs = [
     id: 6,
     company: "FinEdge Corp",
     position: "JavaScript Developer",
-    location: "Atlanta, GA",
+    location: "Atlanta",
     type: "Hybrid",
     salary: "$105,000 - $140,000",
     description:
@@ -69,7 +69,7 @@ let jobs = [
     id: 7,
     company: "MedNova AI",
     position: "AI Software Engineer",
-    location: "San Diego, CA",
+    location: "San Diego",
     type: "Full-time",
     salary: "$150,000 - $200,000",
     description:
@@ -78,7 +78,7 @@ let jobs = [
   },
   {
     id: 8,
-    company: "Learn Tech",
+    company: "Lancer Tech",
     position: "Product Designer (UI/UX)",
     location: "Remote",
     type: "Contract",
@@ -166,3 +166,89 @@ function emptyState() {
     </div>
   </div>`;
 }
+
+function render() {
+  let filtered;
+
+  if (activeTab === "all") {
+    filtered = jobs;
+  } else {
+    filtered = jobs.filter(function (job) {
+      return job.status === activeTab;
+    });
+  }
+
+  const count = filtered.length;
+  jobsCountEl.textContent = count + " job" + (count !== 1 ? "s" : "");
+
+  statTotal.textContent = jobs.length;
+
+  statInterview.textContent = jobs.filter(function (job) {
+    return job.status === "interview";
+  }).length;
+
+  statRejected.textContent = jobs.filter(function (job) {
+    return job.status === "rejected";
+  }).length;
+
+  if (filtered.length > 0) {
+    jobsList.innerHTML = filtered.map(renderCard).join("");
+  } else {
+    jobsList.innerHTML = emptyState();
+  }
+}
+
+jobsList.addEventListener("click", function (e) {
+  const btn = e.target.closest("[data-action]");
+
+  if (!btn) return;
+
+  const action = btn.dataset.action;
+  const id = parseInt(btn.dataset.id);
+
+  const job = jobs.find(function (j) {
+    return j.id === id;
+  });
+
+  if (!job) return;
+
+  if (action === "delete") {
+    jobs = jobs.filter(function (j) {
+      return j.id !== id;
+    });
+  } else if (action === "interview") {
+    if (job.status === "interview") {
+      job.status = "not-applied";
+    } else {
+      job.status = "interview";
+    }
+  } else if (action === "rejected") {
+    if (job.status === "rejected") {
+      job.status = "not-applied";
+    } else {
+      job.status = "rejected";
+    }
+  }
+
+  render();
+});
+
+document.getElementById("tab-bar").addEventListener("click", function (e) {
+  const btn = e.target.closest("[data-tab]");
+
+  if (!btn) return;
+
+  document.querySelectorAll("[data-tab]").forEach(function (tabBtn) {
+    tabBtn.classList.remove("tab-active");
+    tabBtn.classList.add("bg-white", "text-slate-500");
+  });
+
+  btn.classList.add("tab-active");
+  btn.classList.remove("bg-white", "text-slate-500");
+
+  activeTab = btn.dataset.tab;
+
+  render();
+});
+
+render();
